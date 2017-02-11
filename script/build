@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+version="1.0.1"
+arch="amd64"
+
+mkdir __temp
+git clone https://github.com/sorah/envchain __temp
+pushd __temp
+make
+mv envchain ../src/usr/local/bin
+popd
+rm -r __temp
+
+pushd src
+fpm -s dir -t deb -n envchain -v $version .
+mv envchain_${version}_${arch}.deb ../dist
+popd

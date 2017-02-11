@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+if [[ $(lsb_release -r | cut -d "       " -f 2) == "16.04" ]]; then
+  sudo apt install libsecret-1-dev
+else
+  echo "No script for this Ubuntu version"
+  echo "You need to install libsecret manually"
+fi
